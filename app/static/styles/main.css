@@ -1,0 +1,12 @@
+/*limit the width of textarea*/
+#textInput {
+	width: 45%;
+}
+
+.lemmatized-text {
+	font-family: 'Raleway',sans-serif; 
+	font-size: 18px; 
+	font-weight: 500; 
+	line-height: 32px; 
+	margin: 0 0 24px;
+}
