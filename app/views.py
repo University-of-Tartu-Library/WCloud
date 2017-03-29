@@ -10,11 +10,11 @@ def index():
     return render_template('index.html',
                            title='Home')
 
-@app.route('/lemmatize_form/', methods=['POST'])
-def lemmatize_form():
-    text = request.form['text']
-    #print(text)
+@app.route('/create_bubbles', methods=['POST'])
+def create_bubbles():
+    text = request.json['text']
     lem_freq = lemmatizer.lemmatize(text)
     #return render_template('lemmatized.html', lem_text=lemmatizer.lemmatize(text))
+    print(lem_freq)
     return json.dumps(lem_freq)
 
