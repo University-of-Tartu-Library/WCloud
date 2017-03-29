@@ -9,6 +9,7 @@
 python3, estnltk, flask
 
 To change vis.coffee you need to install CoffeeScript and run
+
     coffee -w -o js/ -c coffee/
 
 
