@@ -11,7 +11,6 @@
     data = [];
     node = null;
     label = null;
-    limit = null;
     margin = {
       top: 5,
       right: 0,
@@ -32,7 +31,7 @@
     collisionPadding = 4;
     minCollisionRadius = 12;
     jitter = 0.5;
-    limit = 40;
+    limit = 120;
     transformData = function(rawData, limit) {
       var d;
       for (d in rawData) {
@@ -240,11 +239,11 @@
     return chart;
   };
 
-  root.plotData = function(selector, data, plot, limit) {
+  root.plotData = function(selector, data, plot) {
     return d3.select(selector).datum(data).call(plot);
   };
 
-  root.drawBubbles = function(json_data, limit) {
+  root.drawBubbles = function(json_data) {
     var display, plot;
     plot = Bubbles();
     display = function(data) {
@@ -253,7 +252,6 @@
     d3.select("#jitter").on("input", function() {
       return plot.jitter(parseFloat(this.output.value));
     });
-    plot.limit(parseFloat(limit));
     return display(json_data);
   };
 

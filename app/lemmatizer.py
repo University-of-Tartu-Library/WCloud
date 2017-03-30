@@ -9,7 +9,7 @@ stopwords = ["aga", "ehk", "ei", "et", "iga", "ikka", "ise", "ja", "ju", "ka", "
 "võima", "välja", "ära", "üks", "üle", "ning", "ega", "nagu", "sest", "minema", "tulema", \
 "tegema", "teine", "või"]
 
-def lemmatize(text):
+def lemmatize(text, limit=None):
     """
     Parameters
     ----------
@@ -34,5 +34,8 @@ def lemmatize(text):
         elif "Z" not in word[1]: # exclude punctuation
             words.append(word[0])
     stopwords_removed = [w for w in words if w not in stopwords]
-    return Counter(stopwords_removed)
+    if limit:
+        return Counter(stopwords_removed).most_common(limit)
+    else:
+        return Counter(stopwords_removed)
 

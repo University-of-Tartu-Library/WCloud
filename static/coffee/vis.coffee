@@ -9,7 +9,6 @@ Bubbles = () ->
   data = []
   node = null
   label = null
-  limit = null
   margin = {top: 5, right: 0, bottom: 0, left: 0}
   # largest size for our bubbles
   maxRadius = 65
@@ -45,7 +44,7 @@ Bubbles = () ->
   # - jitter controls the 'jumpiness'
   #  of the collisions
   jitter = 0.5
-  limit = 40
+  limit = 120
 
   # ---
   # tweaks our dataset to get it into the
@@ -422,7 +421,7 @@ Bubbles = () ->
 # of our chart with it's data and div selector
 # specified
 # ---
-root.plotData = (selector, data, plot, limit) ->
+root.plotData = (selector, data, plot) ->
   d3.select(selector)
     .datum(data)
     .call(plot)
@@ -430,7 +429,7 @@ root.plotData = (selector, data, plot, limit) ->
 # ---
 # jQuery document ready.
 # ---
-root.drawBubbles = (json_data, limit) ->
+root.drawBubbles = (json_data) ->
   # create a new Bubbles chart
   plot = Bubbles()
 
@@ -446,7 +445,7 @@ root.drawBubbles = (json_data, limit) ->
   d3.select("#jitter")
     .on "input", () ->
       plot.jitter(parseFloat(this.output.value))
-  plot.limit(parseFloat(limit))
+  #plot.limit(parseFloat(limit))
 
   # bind change in drop down to change the
 

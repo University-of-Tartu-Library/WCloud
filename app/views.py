@@ -29,8 +29,9 @@ def support_jsonp(f):
 @support_jsonp
 def create_bubbles():
     text = unquote(request.args.get("text"))
+    limit = int(request.args.get("limit"))
     print(text)
-    lem_freq = lemmatizer.lemmatize(text)
+    lem_freq = lemmatizer.lemmatize(text, limit)
     #return render_template('lemmatized.html', lem_text=lemmatizer.lemmatize(text))
     print(lem_freq)
     return json.dumps(lem_freq)

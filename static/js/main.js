@@ -38,13 +38,14 @@ $(function() {
         $.ajax({
             url : $("#lem-submit").attr("action"), // the endpoint
             type : "GET", // http method
-            data : { text : $('#text-input').val() }, // data sent with the post request
+            data : { text : $('#text-input').val(),
+                     limit : $("#limit_input").val()  }, // data sent with the post request
             dataType: 'jsonp',
             contentType: 'application/json;charset=UTF-8',
             // handle a successful response
             success : function(json) {
             	var text_freq = counterToBubble(json);
-                d3_chart = drawBubbles(text_freq, $("#limit_input").val());
+                d3_chart = drawBubbles(text_freq);
             },
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
