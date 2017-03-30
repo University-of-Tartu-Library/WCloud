@@ -22,7 +22,7 @@ def support_jsonp(f):
             return current_app.response_class(content, mimetype='application/javascript')
         else:
             return f(*args, **kwargs)
-return decorated_function
+    return decorated_function
 
 @support_jsonp
 @app.route('/create_bubbles', methods=['POST'])
