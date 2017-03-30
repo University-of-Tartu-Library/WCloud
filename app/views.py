@@ -19,12 +19,12 @@ def support_jsonp(f):
         callback = request.args.get('callback', False)
         if callback:
             content = str(callback) + '(' + str(f(*args,**kwargs)) + ')'
-            return app.response_class(content, mimetype='application/javascript')
+            return app.response_class(content, mimetype='application/json')
         else:
             return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/create_bubbles', methods=['POST'])
+@app.route('/create_bubbles', methods=['GET'])
 @support_jsonp
 def create_bubbles():
     text = request.json['text']
