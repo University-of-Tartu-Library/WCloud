@@ -38,7 +38,7 @@ $(function() {
         $.ajax({
             url : $("#lem-submit").attr("action"), // the endpoint
             type : "GET", // http method
-            data : JSON.stringify({ text : $('#text-input').val() }, null, '\t'), // data sent with the post request
+            data : { text : $('#text-input').val() }, // data sent with the post request
             dataType: 'jsonp',
             contentType: 'application/json;charset=UTF-8',
             // handle a successful response
