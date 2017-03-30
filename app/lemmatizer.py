@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from estnltk import Text
 from collections import Counter
 
@@ -5,7 +7,7 @@ stopwords = ["aga", "ehk", "ei", "et", "iga", "ikka", "ise", "ja", "ju", "ka", "
 "keegi", "kes", "kui", "kuidas", "kõik", "mina", "mis", "miski", "nii", "olema", "oma", \
 "pidama", "saama", "sama", "seal", "see", "siis", "sina", "tema", "tulema", "vaid", "veel", \
 "võima", "välja", "ära", "üks", "üle", "ning", "ega", "nagu", "sest", "minema", "tulema", \
-"tegema", "teine"]
+"tegema", "teine", "või"]
 
 def lemmatize(text):
     """
