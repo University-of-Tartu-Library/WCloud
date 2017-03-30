@@ -4,6 +4,7 @@ from flask import request
 from flask import render_template
 from app import lemmatizer
 import json
+import datetime
 from functools import wraps
 #from estonian_wordcloud import lemm
 
@@ -29,9 +30,7 @@ def support_jsonp(f):
 @support_jsonp
 def create_bubbles():
     text = unquote(request.args.get("text"))
-    print(text)
+    print("{} -- {} -- {}".format(datetime.datetime.now(), request.remote_addr, text))
     lem_freq = lemmatizer.lemmatize(text)
-    #return render_template('lemmatized.html', lem_text=lemmatizer.lemmatize(text))
-    print(lem_freq)
     return json.dumps(lem_freq)
 
