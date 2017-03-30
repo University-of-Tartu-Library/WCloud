@@ -37,7 +37,7 @@ $(function() {
         console.log("create_bubbles is working!") // sanity check
         $.ajax({
             url : $("#lem-submit").attr("action"), // the endpoint
-            type : "POST", // http method
+            type : "GET", // http method
             data : JSON.stringify({ text : $('#text-input').val() }, null, '\t'), // data sent with the post request
             dataType: 'jsonp',
             contentType: 'application/json;charset=UTF-8',

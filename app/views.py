@@ -1,4 +1,5 @@
 from app import app
+from urllib import unquote
 from flask import request
 from flask import render_template
 from app import lemmatizer
@@ -27,7 +28,7 @@ def support_jsonp(f):
 @app.route('/create_bubbles', methods=['GET'])
 @support_jsonp
 def create_bubbles():
-    text = request.json['text']
+    text = json.loads(unquote(request.query_string.partition('&')[1])).get("text")
     lem_freq = lemmatizer.lemmatize(text)
     #return render_template('lemmatized.html', lem_text=lemmatizer.lemmatize(text))
     print(lem_freq)
