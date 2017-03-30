@@ -5,10 +5,10 @@ from app import lemmatizer
 import json
 #from estonian_wordcloud import lemm
 
-@app.route("/")
-def index():
-    return render_template('index.html',
-                           title='Home')
+#@app.route("/")
+#def index():
+#    return render_template('index.html',
+#                           title='Home')
 
 @app.route('/create_bubbles', methods=['POST'])
 def create_bubbles():
