@@ -13,7 +13,7 @@ function WordFreq(name, count){
 // Convert python Counter to bubble format
 function counterToBubble(cnt) {
 	var wordObjs = [];
-	cnt = JSON.parse(cnt);
+	//cnt = JSON.parse(cnt);
 	for (var key in cnt) {
 		if (cnt.hasOwnProperty(key)) {
 			wordObjs.push(new WordFreq(key, cnt[key]));
