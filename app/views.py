@@ -18,14 +18,17 @@ def support_jsonp(f):
     def decorated_function(*args, **kwargs):
         callback = request.args.get('callback', False)
         if callback:
-            content = str(callback) + '(' + str(f(*args,**kwargs).data) + ')'
-            return current_app.response_class(content, mimetype='application/javascript')
+            resp = func(*args, **kwargs)
+            resp.set_data('{}({})'.format(
+                str(callback),
+                resp.get_data(as_text=True)
+            ))
         else:
             return f(*args, **kwargs)
     return decorated_function
 
-@support_jsonp
 @app.route('/create_bubbles', methods=['POST'])
+@support_jsonp
 def create_bubbles():
     text = request.json['text']
     lem_freq = lemmatizer.lemmatize(text)
