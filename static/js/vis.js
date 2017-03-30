@@ -5,7 +5,7 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   Bubbles = function() {
-    var chart, clear, click, collide, collisionPadding, connectEvents, data, force, gravity, hashchange, height, idValue, jitter, label, limit, margin, maxRadius, minCollisionRadius, mouseout, mouseover, node, rScale, rValue, textValue, tick, transformData, update, updateActive, updateLabels, updateNodes, width;
+    var chart, clear, click, collide, collisionPadding, connectEvents, data, force, gravity, hashchange, height, idValue, jitter, label, margin, maxRadius, minCollisionRadius, mouseout, mouseover, node, rScale, rValue, textValue, tick, transformData, update, updateActive, updateLabels, updateNodes, width;
     width = 980;
     height = 510;
     data = [];
@@ -31,16 +31,11 @@
     collisionPadding = 4;
     minCollisionRadius = 12;
     jitter = 0.5;
-    limit = 120;
-    transformData = function(rawData, limit) {
+    transformData = function(rawData) {
       var d;
       for (d in rawData) {
         d.count = parseInt(d.count);
       }
-      rawData.sort(function(x, y) {
-        return d3.descending(x.count, y.count);
-      });
-      rawData = rawData.slice(0, +(limit - 1) + 1 || 9e9);
       return d3.shuffle(rawData);
     };
     tick = function(e) {
@@ -59,7 +54,7 @@
     chart = function(selection) {
       return selection.each(function(rawData) {
         var maxDomainValue, svg, svgEnter;
-        data = transformData(rawData, limit);
+        data = transformData(rawData);
         maxDomainValue = d3.max(data, function(d) {
           return rValue(d);
         });
@@ -220,13 +215,6 @@
         return width;
       }
       width = _;
-      return chart;
-    };
-    chart.limit = function(_) {
-      if (!arguments.length) {
-        return limit;
-      }
-      limit = _;
       return chart;
     };
     chart.r = function(_) {

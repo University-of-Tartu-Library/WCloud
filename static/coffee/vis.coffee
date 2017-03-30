@@ -44,7 +44,6 @@ Bubbles = () ->
   # - jitter controls the 'jumpiness'
   #  of the collisions
   jitter = 0.5
-  limit = 120
 
   # ---
   # tweaks our dataset to get it into the
@@ -54,13 +53,9 @@ Bubbles = () ->
   # - for your own dataset, you might want
   #  to tweak a bit more
   # ---
-  transformData = (rawData, limit) ->
+  transformData = (rawData) ->
     for d of rawData
       d.count = parseInt(d.count)
-    # remove extra data
-    rawData.sort (x,y) ->
-      d3.descending(x.count, y.count)
-    rawData = rawData[0..(limit - 1)]
     # shiffle data
     d3.shuffle(rawData)
 
@@ -106,7 +101,7 @@ Bubbles = () ->
     selection.each (rawData) ->
 
       # first, get the data in the right format
-      data = transformData(rawData, limit)
+      data = transformData(rawData)
       # setup the radius scale's domain now that
       # we have some data
       maxDomainValue = d3.max(data, (d) -> rValue(d))
@@ -392,15 +387,6 @@ Bubbles = () ->
     if !arguments.length
       return width
     width = _
-    chart
-
-  # ---
-  # public getter/setter for limit variable
-  # ---
-  chart.limit = (_) ->
-    if !arguments.length
-      return limit
-    limit = _
     chart
 
   # ---
